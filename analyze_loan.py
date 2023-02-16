@@ -1,6 +1,6 @@
 #IMPORTS
 import datetime as dt
-from dateutils import month_start_date, relativedelta
+from dateutils import relativedelta
 import matplotlib.pyplot as plt
 import numpy_financial as npf
 import pandas as pd
@@ -19,7 +19,7 @@ class Loan:
         self.periods = term * 12
         self.loan_amount = loan_amount
         # month_start_date is a function that takes a date and returns the first day of the month; most common for loans
-        self.start_date = month_start_date(dt.date.fromisoformat(start_date) + dt.timedelta(31))
+        self.start_date = relativedelta(day=1, months=+1)+dt.date.fromisoformat(start_date)
         # pmt is the monthly payment amount
         self.pmt = npf.pmt(self.rate, self.periods, -self.loan_amount)
         # pmt_str is the monthly payment amount formatted as a string
@@ -80,7 +80,8 @@ class Loan:
             extra_pmt += 1
         return extra_pmt, self.pmt + extra_pmt
     
-# loan = Loan(5.875, 30, 360000)
+loan = Loan(5.875, 30, 360000)
+print(loan.table)
 # amort = loan.table
 # loan.plot_balances()
 # print(amort)

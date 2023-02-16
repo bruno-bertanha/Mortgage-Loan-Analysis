@@ -64,6 +64,12 @@ class Loan:
         amort = self.table
         print("Summary")
         print("-" * 30)
+        print('Basic Information')
+        print(f'{"Loan Amount:":19s} {self.loan_amount:.2f}')
+        print(f'{"Interest Rate:":19s} {self.rate * 1200:.2f}%')
+        print(f'{"Term:":19s} {self.periods // 12:.0f} years')
+        print(f'{"Start Date:":19s} {amort.index.date[0]}')
+        print()
         print(f'Payment: {self.pmt_str:>21}')
         print(f'{"Payoff Date:":19s} {amort.index.date[-1]}')
         print(f'Interest Paid: {amort.Interest.cumsum()[-1]:>15,.2f}')
@@ -80,8 +86,8 @@ class Loan:
             extra_pmt += 1
         return extra_pmt, self.pmt + extra_pmt
     
-loan = Loan(5.875, 30, 360000)
-print(loan.table)
+#loan = Loan(5.875, 30, 360000)
+#print(loan.table)
 # amort = loan.table
 # loan.plot_balances()
 # print(amort)

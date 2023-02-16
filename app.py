@@ -44,7 +44,7 @@ def retire_debt(loan):
     years = int(input("Enter the number of years to pay off the loan: "))
     extra, pmt = loan.retire_debt(years)
     print(f'You need to pay an extra {extra} each month to pay off the loan in {years} years.')
-    print(f'Your new payment will be {pmt}.')
+    print(f'Your new payment will be {pmt:.2f}.')
 
 options = { 
     '0': sys.exit,
